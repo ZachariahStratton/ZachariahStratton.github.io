@@ -8,57 +8,102 @@
 		
         <div id="navbar"><span>3D Sock Design Viewer</span></div>
         <script src="./three.min.js"></script>
-		<!-- Texture image upload-->
-		<input type='file' onchange="readURL(this);" />
-		<img id="blah" src="http://placehold.it/180" alt="your image" />
-		
 		
 		<script type='text/javascript'>
-		function readURL(input) {
-					if (input.files && input.files[0]) {
-						var reader = new FileReader();
+		let camera, scene, renderer, mesh;
 
-						reader.onload = function (e) {
-							$('#output')
-								.attr('src', e.target.result);
-						};
+		init();
+		animate();
+		
+		function init() {
 
-						reader.readAsDataURL(input.files[0]);
-					}
+		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+		    camera.position.z = 1;
+
+		    scene = new THREE.Scene();
+
+		    const loader = new THREE.TextureLoader();
+
+		    const texture1 = loader.load('img.jpg');
+		    const texture2 = loader.load('img.jpg');
+
+		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
+		    const material = new THREE.MeshBasicMaterial({
+			  map: texture1
+		    });
+
+		    mesh = new THREE.Mesh(geometry, material);
+		    scene.add(mesh);
+
+		    renderer = new THREE.WebGLRenderer({
+			  antialias: true
+		    });
+		    renderer.setPixelRatio(window.devicePixelRatio);
+		    renderer.setSize(window.innerWidth, window.innerHeight);
+		    document.body.appendChild(renderer.domElement);
+
+		    setTimeout(() => {
+
+			material.map = texture2;
+			texture1.dispose();
+
+		  }, 3000); // change the texture after three seconds
+
+		}
+
+		function animate() {
+
+		  requestAnimationFrame(animate);
+
+		  mesh.rotation.x += 0.01;
+		  mesh.rotation.y += 0.02;
+
+		  renderer.render(scene, camera);
+
+		}
+
+		
+		<!-- Texture image upload-->
+		function main()
+		{
+			var inputFileToLoad = document.createElement("input");
+			inputFileToLoad.type = "file";
+			inputFileToLoad.id = "inputFileToLoad";
+			document.body.appendChild(inputFileToLoad);
+
+			var buttonLoadFile = document.createElement("button");
+			buttonLoadFile.onclick = applyTexture;
+			buttonLoadFile.textContent = "Apply Texture";
+			document.body.appendChild(buttonLoadFile);
+		}
+
+		function applyTexture()
+		{
+			var filesSelected = document.getElementById("inputFileToLoad").files;
+			if (filesSelected.length > 0)
+			{
+				var fileToLoad = filesSelected[0];
+
+				if (fileToLoad.type.match("image.*"))
+				{
+					var fileReader = new FileReader();
+					fileReader.onload = function(fileLoadedEvent) 
+					{
+						var imageLoaded = document.createElement("img");
+						imageLoaded.src = fileLoadedEvent.target.result;
+						document.body.appendChild(imageLoaded);
+						
+						const loader = new new THREE.TextureLoader();
+						texture1 = loader.load(fileLoadedEvent.target.result);
+						material.map = texture1;
+					};
+					fileReader.readAsDataURL(fileToLoad);
 				}
+			}
+		}
+
 		main();
 		</script>
-		
-		
-		<!--
-        <script>
-          var scene = new THREE.Scene();
-		  
-          var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight);
-		  
-          var renderer = new THREE.WebGLRenderer({antialias: true});
-          renderer.setSize(window.innerWidth,window.innerHeight);
-		  renderer.setClearColor("#e5e5e5");
-		  document.body.appendChild(renderer.domElement);
-		  
-          var geometry = new THREE.BoxGeometry(1,1,1);
-          var material = new THREE.MeshBasicMaterial({color: 0xff0000});
-          var cube = new THREE.Mesh(geometry,material);
-          scene.add(cube);
-          cube.position.z = -5;
-          cube.rotation.x = 10;
-          cube.rotation.y = 5;
-          renderer.render(scene,camera);
-		  
-          var animate = function(){
-            cube.rotation.x += 0.01;
-            renderer.render(scene,camera);
-            requestAnimationFrame(animate);
-          }
-          animate();
-		  
-        </script>
-		-->
 		
         </body>
 </html>
