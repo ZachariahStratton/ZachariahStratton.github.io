@@ -35,31 +35,23 @@
 		    scene = new THREE.Scene();
 			
 			//Load default textures
-			const loader = new THREE.TextureLoader();
-			//const texture1 = loader.load('img.jpg');
+			var textureLoader = new THREE.TextureLoader();
+			var texture1 = textureLoader.load('img.jpg');
+			var material = new THREE.MeshPhongMaterial({map: map});
 			
 			//Create 3D model from obj file
-			var OBJFile = 'model.obj';
-			var MTLFile = 'materials.mtl';
-			
-			new THREE.MTLLoader()
-			.load(MTLFile, function (materials) {
-				materials.preload();
-				new THREE.OBJLoader()
-					.setMaterials(materials)
-					.load(OBJFile, function (object) {
-						object.position.y = - 95;
-						var texture = new THREE.TextureLoader().load('img.jpg');
+			//instantiate a loader
+			var oLoader = new THREE.OBJLoader();
 
-						object.traverse(function (child) {   // aka setTexture
-							if (child instanceof THREE.Mesh) {
-								child.material.map = texture;
-							}
-						});
-						scene.add(object);
-					});
-			});
+			// load a resource
+			oLoader.load('model.obj', function ( object ) {
+					object.traverse( function ( node ) {
+						if ( node.isMesh ) node.material = material;
+					} );
+					scene.add( object );
+			} );
 			
+			/*
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
@@ -67,6 +59,7 @@
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
+			*/
 
 		    renderer = new THREE.WebGLRenderer({
 			  antialias: true
