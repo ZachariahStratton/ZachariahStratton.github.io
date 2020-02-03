@@ -17,11 +17,23 @@
 		animate();
 			
 		function init() {
+		
+			//Upload texture button
+			var inputFileToLoad = document.createElement("input");
+			inputFileToLoad.type = "file";
+			inputFileToLoad.id = "inputFileToLoad";
+			document.body.appendChild(inputFileToLoad);
 
+			var buttonLoadFile = document.createElement("button");
+			buttonLoadFile.onclick = applyTexture;
+			buttonLoadFile.textContent = "Apply Texture";
+			document.body.appendChild(buttonLoadFile);
+
+			//create scene
 		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
 		    camera.position.z = 1;
-
 		    scene = new THREE.Scene();
+			
 			const loader = new THREE.TextureLoader();
 			const texture1 = loader.load('img.jpg');
 			
@@ -48,39 +60,29 @@
 
 			}, 3000); // change the texture after three seconds
 			*/
-
-			//Upload texture button
-			var inputFileToLoad = document.createElement("input");
-			inputFileToLoad.type = "file";
-			inputFileToLoad.id = "inputFileToLoad";
-			document.body.appendChild(inputFileToLoad);
-
-			var buttonLoadFile = document.createElement("button");
-			buttonLoadFile.onclick = applyTexture;
-			buttonLoadFile.textContent = "Apply Texture";
-			document.body.appendChild(buttonLoadFile);
 			
-			//modify model map
-			var filesSelected = document.getElementById("inputFileToLoad").files;
-			if (filesSelected.length > 0)
+			function applyTexture()
 			{
-				var fileToLoad = filesSelected[0];
-
-				if (fileToLoad.type.match("image.*"))
+				var filesSelected = document.getElementById("inputFileToLoad").files;
+				if (filesSelected.length > 0)
 				{
-					var fileReader = new FileReader();
-					fileReader.onload = function(fileLoadedEvent) 
+					var fileToLoad = filesSelected[0];
+
+					if (fileToLoad.type.match("image.*"))
 					{
-						var imageLoaded = document.createElement("img");
-						imageLoaded.src = fileLoadedEvent.target.result;
-						document.body.appendChild(imageLoaded);
-						
-						/*
-						const loader2 = new THREE.TextureLoader();
-						newTexture = loader2.load(fileLoadedEvent.target.result);
-						material.map = newTexture;*/
-					};
-					fileReader.readAsDataURL(fileToLoad);
+						var fileReader = new FileReader();
+						fileReader.onload = function(fileLoadedEvent) 
+						{
+							/*var imageLoaded = document.createElement("img");
+							imageLoaded.src = fileLoadedEvent.target.result;
+							document.body.appendChild(imageLoaded);*/
+							
+							const loader2 = new THREE.TextureLoader();
+							newTexture = loader2.load(fileLoadedEvent.target.result);
+							material.map = newTexture;
+						};
+						fileReader.readAsDataURL(fileToLoad);
+					}
 				}
 			}
 		}
@@ -95,6 +97,8 @@
 		  renderer.render(scene, camera);
 
 		}
+
+		main();
 		</script>
 		
         </body>
