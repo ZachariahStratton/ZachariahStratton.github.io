@@ -71,13 +71,14 @@
 					var fileReader = new FileReader();
 					fileReader.onload = function(fileLoadedEvent) 
 					{
-						/*var imageLoaded = document.createElement("img");
+						var imageLoaded = document.createElement("img");
 						imageLoaded.src = fileLoadedEvent.target.result;
-						document.body.appendChild(imageLoaded);*/
+						document.body.appendChild(imageLoaded);
 						
+						/*
 						const loader2 = new THREE.TextureLoader();
 						newTexture = loader2.load(fileLoadedEvent.target.result);
-						material.map = newTexture;
+						material.map = newTexture;*/
 					};
 					fileReader.readAsDataURL(fileToLoad);
 				}
