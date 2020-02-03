@@ -6,17 +6,41 @@
         </head>
         <body>
 		
-		
-        <div id="navbar"><span>Three.js Tutorial</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer</span></div>
         <script src="./three.min.js"></script>
+		<!-- Texture image upload-->
+		<input type='file' onchange="readURL(this);" />
+		<img id="blah" src="http://placehold.it/180" alt="your image" />
 		
 		
+		<script type='text/javascript'>
+		function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+
+						reader.onload = function (e) {
+							$('#output')
+								.attr('src', e.target.result);
+						};
+
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+		main();
+		</script>
+		
+		
+		<!--
         <script>
           var scene = new THREE.Scene();
+		  
           var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight);
+		  
           var renderer = new THREE.WebGLRenderer({antialias: true});
           renderer.setSize(window.innerWidth,window.innerHeight);
-          $('body').append(renderer.domElement);
+		  renderer.setClearColor("#e5e5e5");
+		  document.body.appendChild(renderer.domElement);
+		  
           var geometry = new THREE.BoxGeometry(1,1,1);
           var material = new THREE.MeshBasicMaterial({color: 0xff0000});
           var cube = new THREE.Mesh(geometry,material);
@@ -25,12 +49,16 @@
           cube.rotation.x = 10;
           cube.rotation.y = 5;
           renderer.render(scene,camera);
+		  
           var animate = function(){
             cube.rotation.x += 0.01;
             renderer.render(scene,camera);
             requestAnimationFrame(animate);
           }
           animate();
+		  
         </script>
+		-->
+		
         </body>
 </html>
