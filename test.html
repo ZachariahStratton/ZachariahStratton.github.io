@@ -8,6 +8,7 @@
 		
         <div id="navbar"><span>3D Sock Design Viewer</span></div>
         <script src="./three.min.js"></script>
+        <script src="./OBJLoader.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -41,7 +42,6 @@
 			//var material = new THREE.MeshPhongMaterial({map: map});
 			
 			//Create 3D model from obj file
-			/*
 			//instantiate a loader
 			var oLoader = new THREE.OBJLoader();
 
@@ -52,8 +52,8 @@
 					} );
 					scene.add( object );
 			} );
-			*/
 			
+			/*
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
@@ -61,7 +61,9 @@
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
+			*/
 
+			
 		    renderer = new THREE.WebGLRenderer({
 			  antialias: true
 		    });
@@ -90,10 +92,6 @@
 						var fileReader = new FileReader();
 						fileReader.onload = function(fileLoadedEvent) 
 						{
-							/*var imageLoaded = document.createElement("img");
-							imageLoaded.src = fileLoadedEvent.target.result;
-							document.body.appendChild(imageLoaded);*/
-							
 							const loader2 = new THREE.TextureLoader();
 							newTexture = loader2.load(fileLoadedEvent.target.result);
 							material.map = newTexture;
