@@ -35,9 +35,10 @@
 		    scene = new THREE.Scene();
 			
 			//Load default textures
-			var textureLoader = new THREE.TextureLoader();
-			var texture1 = textureLoader.load('img.jpg');
-			var material = new THREE.MeshPhongMaterial({map: map});
+			var tLoader = new THREE.TextureLoader();
+			var texture1 = tLoader.load('img.jpg');
+			
+			//var material = new THREE.MeshPhongMaterial({map: map});
 			
 			//Create 3D model from obj file
 			/*
