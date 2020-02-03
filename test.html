@@ -15,12 +15,6 @@
 
 		init();
 		animate();
-		
-		const loader = new THREE.TextureLoader();
-		texture1 = loader.load('img.jpg');
-		material = new THREE.MeshBasicMaterial({
-			map: texture1
-		});
 			
 		function init() {
 
@@ -28,8 +22,13 @@
 		    camera.position.z = 1;
 
 		    scene = new THREE.Scene();
-
+			const loader = new THREE.TextureLoader();
+			const texture1 = loader.load('img.jpg');
+			
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
+			const material = new THREE.MeshBasicMaterial({
+				map: texture1
+			});
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
@@ -41,30 +40,16 @@
 		    renderer.setSize(window.innerWidth, window.innerHeight);
 		    document.body.appendChild(renderer.domElement);
 
+			/*
 		    setTimeout(() => {
 
 			material.map = texture2;
 			texture1.dispose();
 
 			}, 3000); // change the texture after three seconds
+			*/
 
-		}
-
-		function animate() {
-
-		  requestAnimationFrame(animate);
-
-		  mesh.rotation.x += 0.01;
-		  mesh.rotation.y += 0.02;
-
-		  renderer.render(scene, camera);
-
-		}
-
-		
-		<!-- Texture image upload-->
-		function main()
-		{
+			//Upload texture button
 			var inputFileToLoad = document.createElement("input");
 			inputFileToLoad.type = "file";
 			inputFileToLoad.id = "inputFileToLoad";
@@ -74,10 +59,8 @@
 			buttonLoadFile.onclick = applyTexture;
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
-		}
-
-		function applyTexture()
-		{
+			
+			//modify model map
 			var filesSelected = document.getElementById("inputFileToLoad").files;
 			if (filesSelected.length > 0)
 			{
@@ -101,7 +84,16 @@
 			}
 		}
 
-		main();
+		function animate() {
+
+		  requestAnimationFrame(animate);
+
+		  mesh.rotation.x += 0.01;
+		  mesh.rotation.y += 0.02;
+
+		  renderer.render(scene, camera);
+
+		}
 		</script>
 		
         </body>
