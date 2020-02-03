@@ -9,12 +9,19 @@
         <div id="navbar"><span>3D Sock Design Viewer</span></div>
         <script src="./three.min.js"></script>
 		
+		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
 		let camera, scene, renderer, mesh;
 
 		init();
 		animate();
 		
+		const loader = new THREE.TextureLoader();
+		texture1 = loader.load('img.jpg');
+		material = new THREE.MeshBasicMaterial({
+			map: texture1
+		});
+			
 		function init() {
 
 		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -22,15 +29,7 @@
 
 		    scene = new THREE.Scene();
 
-		    const loader = new THREE.TextureLoader();
-
-		    const texture1 = loader.load('img.jpg');
-		    const texture2 = loader.load('img.jpg');
-
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
-		    const material = new THREE.MeshBasicMaterial({
-			  map: texture1
-		    });
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
@@ -47,7 +46,7 @@
 			material.map = texture2;
 			texture1.dispose();
 
-		  }, 3000); // change the texture after three seconds
+			}, 3000); // change the texture after three seconds
 
 		}
 
@@ -89,13 +88,13 @@
 					var fileReader = new FileReader();
 					fileReader.onload = function(fileLoadedEvent) 
 					{
-						var imageLoaded = document.createElement("img");
+						/*var imageLoaded = document.createElement("img");
 						imageLoaded.src = fileLoadedEvent.target.result;
-						document.body.appendChild(imageLoaded);
+						document.body.appendChild(imageLoaded);*/
 						
-						const loader = new new THREE.TextureLoader();
-						texture1 = loader.load(fileLoadedEvent.target.result);
-						material.map = texture1;
+						const loader2 = new THREE.TextureLoader();
+						newTexture = loader2.load(fileLoadedEvent.target.result);
+						material.map = newTexture;
 					};
 					fileReader.readAsDataURL(fileToLoad);
 				}
