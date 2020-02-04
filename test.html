@@ -4,12 +4,12 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.018</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.019</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
         <script src="./OrbitControls.js"></script>
-        <script src="./OrbitControls.js"></script>
+        <script src="./Color.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -34,9 +34,11 @@
 			document.body.appendChild(buttonLoadFile);
 
 			//create scene for 3D model
-		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
+		    camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
 		    camera.position.z = 1;
 		    scene = new THREE.Scene();
+			scene.background = new THREE.Color('white');
 			
 			/*
 			scene = new THREE.Scene();
@@ -145,7 +147,7 @@
 			
 			//grid for measurements
 			var gridXZ = new THREE.GridHelper(100, 10);
-			gridXZ.setColors( new THREE.Color(0xff0000), new THREE.Color(0xffffff) );
+			gridXZ.setColors( new THREE.Color('black'), new THREE.Color('black') );
 			scene.add(gridXZ);
 			
 			function applyTexture()
@@ -184,8 +186,6 @@
 			renderer.render(scene, camera);
 
 		}
-		
-		//window.addEventListenter( 'resize', onWindowResize, false );
 		
 		</script>
 		
