@@ -21,6 +21,7 @@
 		function init() {
 		
 			//Upload texture button
+			/*
 			var inputFileToLoad = document.createElement("input");
 			inputFileToLoad.type = "file";
 			inputFileToLoad.id = "inputFileToLoad";
@@ -31,14 +32,17 @@
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
 
+			*/
 			//create scene for 3D model
 		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
 		    camera.position.z = 1;
 		    scene = new THREE.Scene();
 			
+			/*
 			//Load default textures
 			var tLoader = new THREE.TextureLoader();
 			var texture1 = tLoader.load('img.jpg');
+			*/
 			
 			//var material = new THREE.MeshPhongMaterial({map: map});
 			
