@@ -8,6 +8,7 @@
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
+        <script src="./TrackballControls.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -115,6 +116,17 @@
 			renderer.shadowMap.type = THREE.BasicShadowMap;
 			
 			document.body.appendChild(renderer.domElement);
+			
+			//add controls to rotate
+			controls = new THREE.TrackballControls( camera );
+			controls.rotateSpeed = 1.0;
+			controls.zoomSpeed = 1.2;
+			controls.panSpeed = 0.8;
+			controls.noZoom = false;
+			controls.noPan = false;
+			controls.staticMoving = true;
+			controls.dynamicDampingFactor = 0.3;
+			controls.update();
 			
 			function applyTexture()
 			{
