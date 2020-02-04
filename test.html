@@ -9,13 +9,14 @@
         <div id="navbar"><span>3D Sock Design Viewer</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
+        <script src="./MTLLoader.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
 		let camera, scene, renderer, mesh;
 
 		init();
-		animate();
+		//animate();
 			
 		function init() {
 		
@@ -41,12 +42,24 @@
 			
 			//var material = new THREE.MeshPhongMaterial({map: map});
 			
-			/*
 			//Create 3D model from obj file
 			//instantiate a loader
 			var oLoader = new THREE.OBJLoader();
 
 			// load a resource
+			var mtlLoader = new THREE.MTLLoader();
+			mtlLoader.load("materials.mtl", function(materials){
+			
+				materials.preload();
+				var objLoader = new THREE.OBJLoader();
+				objLoader.setMaterials(materials);
+				
+				objLoader.load("model.obj", function(mesh){
+					scene.add(mesh);
+				});
+			});
+			
+			/*
 			oLoader.load('model.obj', function ( object ) {
 					object.traverse( function ( node ) {
 						if ( node.isMesh ) node.material = material;
@@ -55,6 +68,7 @@
 			} );
 			*/
 			
+			/*
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
@@ -62,6 +76,7 @@
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
+			/*
 
 			
 		    renderer = new THREE.WebGLRenderer({
@@ -102,6 +117,7 @@
 			}
 		}
 
+		/*
 		function animate() {
 
 		  requestAnimationFrame(animate);
@@ -112,7 +128,8 @@
 		  renderer.render(scene, camera);
 
 		}
-
+		*/
+		
 		main();
 		</script>
 		
