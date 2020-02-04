@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.015</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.016</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -117,7 +117,7 @@
 				globalObject = mesh;
 				mesh.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
-						child.material.map = THREE.ImageUtils.loadTexture('img.jpg');
+						child.material.map = THREE.TextureLoader.load('img.jpg');
 						child.material.needsUpdate = true;
 					}
 				} );
@@ -127,7 +127,7 @@
 				scene.add(mesh);
 			});
 			
-			camera.position.set(0, 0, -5);
+			camera.position.set(0, 0, -1);
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
 			
 			renderer = new THREE.WebGLRenderer();
@@ -159,7 +159,7 @@
 							
 							mesh.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material.map = THREE.ImageUtils.loadTexture(fileLoadedEvent.target.result);
+									child.material.map = THREE.TextureLoader.load(fileLoadedEvent.target.result);
 									child.material.needsUpdate = true;
 								}
 							} );
