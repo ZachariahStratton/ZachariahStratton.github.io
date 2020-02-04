@@ -43,8 +43,6 @@
 			//var material = new THREE.MeshPhongMaterial({map: map});
 			
 			//Create 3D model from obj file
-			//instantiate a loader
-			var oLoader = new THREE.OBJLoader();
 
 			// load a resource
 			var mtlLoader = new THREE.MTLLoader();
@@ -76,7 +74,6 @@
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
-			/*
 
 			
 		    renderer = new THREE.WebGLRenderer({
@@ -85,16 +82,8 @@
 		    renderer.setPixelRatio(window.devicePixelRatio);
 		    renderer.setSize(window.innerWidth, window.innerHeight);
 		    document.body.appendChild(renderer.domElement);
-
-			/*
-		    setTimeout(() => {
-
-			material.map = texture2;
-			texture1.dispose();
-
-			}, 3000); // change the texture after three seconds
-			*/
 			
+			/*
 			function applyTexture()
 			{
 				var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -115,6 +104,7 @@
 					}
 				}
 			}
+			*/
 		}
 
 		/*
@@ -130,7 +120,7 @@
 		}
 		*/
 		
-		main();
+		//main();
 		</script>
 		
         </body>
