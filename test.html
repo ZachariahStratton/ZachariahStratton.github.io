@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.016</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.017</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -124,7 +124,7 @@
 					}
 				} );
 				
-				mesh.position.set(-.5, 0, 0);
+				mesh.position.set(0, 0, 0);
 				mesh.rotation.y = -Math.PI/4;
 				scene.add(mesh);
 			});
@@ -142,6 +142,11 @@
 			
 			//add controls to rotate
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
+			
+			//grid for measurements
+			var gridXZ = new THREE.GridHelper(100, 10);
+			gridXZ.setColors( new THREE.Color(0xff0000), new THREE.Color(0xffffff) );
+			scene.add(gridXZ);
 			
 			function applyTexture()
 			{
