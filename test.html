@@ -4,11 +4,12 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.014</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.015</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
         <script src="./OrbitControls.js"></script>
+        <script src="./ImageUtils.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -116,7 +117,8 @@
 				globalObject = mesh;
 				mesh.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
-						child.material.map = texture1;
+						child.material.map = THREE.ImageUtils.loadTexture('img.jpg');
+						child.material.needsUpdate = true;
 					}
 				} );
 				
@@ -157,7 +159,8 @@
 							
 							mesh.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material.map = newTexture;
+									child.material.map = THREE.ImageUtils.loadTexture(fileLoadedEvent.target.result);
+									child.material.needsUpdate = true;
 								}
 							} );
 						};
