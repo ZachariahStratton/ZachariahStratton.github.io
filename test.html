@@ -16,7 +16,7 @@
 		let camera, scene, renderer, mesh;
 
 		init();
-		//animate();
+		animate();
 			
 		function init() {
 		
@@ -40,21 +40,7 @@
 			var tLoader = new THREE.TextureLoader();
 			var texture1 = tLoader.load('img.jpg');
 			
-			//Create 3D model from obj file
-
-			// load a resource
-			var mtlLoader = new THREE.MTLLoader();
-			mtlLoader.load("block.mtl", function(materials){
-			
-				materials.preload();
-				var objLoader = new THREE.OBJLoader();
-				objLoader.setMaterials(materials);
-				
-				objLoader.load("block.obj", function(mesh){
-					scene.add(mesh);
-				});
-			});
-			
+			//create basic block and add texture1 (img.jpg) to it
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
@@ -62,7 +48,33 @@
 
 		    mesh = new THREE.Mesh(geometry, material);
 		    scene.add(mesh);
+			
+			//Create 3D model from obj file
 
+			// load a resource
+			var mtlLoader = new THREE.MTLLoader();
+			mtlLoader.load("block.mtl", function(materials){
+				
+				materials.preload();
+				var objLoader = new THREE.OBJLoader();
+				objLoader.setMaterials(materials);
+				
+				objLoader.load("block.obj", function(mesh){
+				
+					mesh.traverse(function(node){
+						if( node instanceof THREE.Mesh ){
+							node.castShadow = true;
+							node.receiveShadow = true;
+						}
+					});
+				
+					scene.add(mesh);
+					mesh.position.set(-5, 0, 4);
+					mesh.rotation.y = -Math.PI/4;
+				});
+				
+			});
+			
 			
 		    renderer = new THREE.WebGLRenderer({
 			  antialias: true
@@ -104,7 +116,7 @@
 
 		}
 		
-		main();
+		//main();
 		</script>
 		
         </body>
