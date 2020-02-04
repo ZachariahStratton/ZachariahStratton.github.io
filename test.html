@@ -9,7 +9,7 @@
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
         <script src="./OrbitControls.js"></script>
-        <script src="./ImageUtils.js"></script>
+        <script src="./OrbitControls.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -75,13 +75,15 @@
 			var texture1 = tLoader.load('img.jpg');
 			
 			//create basic block and add texture1 (img.jpg) to it
+			/*
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
 			});
 
 		    mesh = new THREE.Mesh(geometry, material);
-		    //scene.add(mesh);
+		    scene.add(mesh);
+			*/
 			
 			//Create 3D model from obj file
 
@@ -117,7 +119,7 @@
 				globalObject = mesh;
 				mesh.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
-						child.material.map = THREE.TextureLoader.load('img.jpg');
+						child.material.map = texture1;
 						child.material.needsUpdate = true;
 					}
 				} );
@@ -159,7 +161,7 @@
 							
 							mesh.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material.map = THREE.TextureLoader.load(fileLoadedEvent.target.result);
+									child.material.map = newTexture;
 									child.material.needsUpdate = true;
 								}
 							} );
