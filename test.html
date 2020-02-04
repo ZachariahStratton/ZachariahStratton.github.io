@@ -159,7 +159,7 @@
 							newTexture = loader2.load(fileLoadedEvent.target.result);
 							//mesh.material.map = newTexture;
 							
-							mesh.traverse( function ( child ) {
+							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
 									child.material.map = newTexture;
 									child.material.needsUpdate = true;
