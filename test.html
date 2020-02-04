@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.017</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.018</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -133,7 +133,7 @@
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
 			
 			renderer = new THREE.WebGLRenderer();
-			renderer.setSize(1280, 720);
+			renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
 
 			renderer.shadowMap.enabled = true;
 			renderer.shadowMap.type = THREE.BasicShadowMap;
@@ -184,6 +184,8 @@
 			renderer.render(scene, camera);
 
 		}
+		
+		//window.addEventListenter( 'resize', onWindowResize, false );
 		
 		</script>
 		
