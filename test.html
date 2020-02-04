@@ -21,7 +21,6 @@
 		function init() {
 		
 			//Upload texture button
-			/*
 			var inputFileToLoad = document.createElement("input");
 			inputFileToLoad.type = "file";
 			inputFileToLoad.id = "inputFileToLoad";
@@ -32,45 +31,30 @@
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
 
-			*/
 			//create scene for 3D model
 		    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
 		    camera.position.z = 1;
 		    scene = new THREE.Scene();
 			
-			/*
 			//Load default textures
 			var tLoader = new THREE.TextureLoader();
 			var texture1 = tLoader.load('img.jpg');
-			*/
-			
-			//var material = new THREE.MeshPhongMaterial({map: map});
 			
 			//Create 3D model from obj file
 
 			// load a resource
 			var mtlLoader = new THREE.MTLLoader();
-			mtlLoader.load("materials.mtl", function(materials){
+			mtlLoader.load("block.mtl", function(materials){
 			
 				materials.preload();
 				var objLoader = new THREE.OBJLoader();
 				objLoader.setMaterials(materials);
 				
-				objLoader.load("model.obj", function(mesh){
+				objLoader.load("block.obj", function(mesh){
 					scene.add(mesh);
 				});
 			});
 			
-			/*
-			oLoader.load('model.obj', function ( object ) {
-					object.traverse( function ( node ) {
-						if ( node.isMesh ) node.material = material;
-					} );
-					scene.add( object );
-			} );
-			*/
-			
-			/*
 		    const geometry = new THREE.BoxBufferGeometry(0.4, 0.4, 0.4);
 			const material = new THREE.MeshBasicMaterial({
 				map: texture1
@@ -87,7 +71,6 @@
 		    renderer.setSize(window.innerWidth, window.innerHeight);
 		    document.body.appendChild(renderer.domElement);
 			
-			/*
 			function applyTexture()
 			{
 				var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -108,10 +91,8 @@
 					}
 				}
 			}
-			*/
 		}
 
-		/*
 		function animate() {
 
 		  requestAnimationFrame(animate);
@@ -122,9 +103,8 @@
 		  renderer.render(scene, camera);
 
 		}
-		*/
 		
-		//main();
+		main();
 		</script>
 		
         </body>
