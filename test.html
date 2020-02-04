@@ -4,11 +4,11 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.006</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.007</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
-        <script src="./TrackballControls.js"></script>
+        <script src="./OrbitControls.js"></script>
 		
 		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
 		<script type='text/javascript'>
@@ -118,15 +118,11 @@
 			document.body.appendChild(renderer.domElement);
 			
 			//add controls to rotate
-			controls = new THREE.TrackballControls( camera );
-			controls.rotateSpeed = 1.0;
-			controls.zoomSpeed = 1.2;
-			controls.panSpeed = 0.8;
-			controls.noZoom = false;
-			controls.noPan = false;
-			controls.staticMoving = true;
-			controls.dynamicDampingFactor = 0.3;
-			controls.update();
+			controls = new THREE.OrbitControls (camera, renderer.domElement);
+    
+			var gridXZ = new THREE.GridHelper(100, 10);
+			gridXZ.setColors( new THREE.Color(0xff0000), new THREE.Color(0xffffff) );
+			scene.add(gridXZ);
 			
 			function applyTexture()
 			{
@@ -152,12 +148,9 @@
 
 		function animate() {
 
-		  requestAnimationFrame(animate);
-
-		  mesh.rotation.x += 0.01;
-		  mesh.rotation.y += 0.02;
-
-		  renderer.render(scene, camera);
+			controls.update();
+			requestAnimationFrame(animate);
+			renderer.render(scene, camera);
 
 		}
 		
