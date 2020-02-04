@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.007</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.008</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -84,13 +84,13 @@
 
 			// load a resource
 			var mtlLoader = new THREE.MTLLoader();
-			mtlLoader.load("block.mtl", function(materials){
+			mtlLoader.load("materials.mtl", function(materials){
 				
 				materials.preload();
 				var objLoader = new THREE.OBJLoader();
 				objLoader.setMaterials(materials);
 				
-				objLoader.load("block.obj", function(mesh){
+				objLoader.load("model.obj", function(mesh){
 				
 					mesh.traverse(function(node){
 						if( node instanceof THREE.Mesh ){
@@ -119,10 +119,6 @@
 			
 			//add controls to rotate
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
-    
-			var gridXZ = new THREE.GridHelper(100, 10);
-			gridXZ.setColors( new THREE.Color(0xff0000), new THREE.Color(0xffffff) );
-			scene.add(gridXZ);
 			
 			function applyTexture()
 			{
