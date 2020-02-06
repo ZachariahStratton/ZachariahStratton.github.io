@@ -35,6 +35,7 @@
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
 			document.body.appendChild(linebreak);
+			document.body.appendChild(linebreak);
 
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -120,7 +121,7 @@
 			
 			var objLoader = new THREE.OBJLoader();
 			
-			objLoader.load("sock.obj", function(mesh){
+			objLoader.load("underarmour_sock.obj", function(mesh){
 				globalObject = mesh;
 				mesh.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
@@ -134,8 +135,8 @@
 				scene.add(mesh);
 			});
 			
-			camera.position.set(0, 2, -.5);
-			//camera.lookAt(new THREE.Vector3(0,1.8,0));
+			camera.position.set(0, 0, -.5);
+			camera.lookAt(new THREE.Vector3(0,1.8,0));
 			
 			renderer = new THREE.WebGLRenderer();
 			renderer.setSize(window.innerWidth * 0.4, window.innerHeight * 0.4);
@@ -147,6 +148,8 @@
 			
 			//add controls to rotate
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
+			controls.target = new THREE.Vector3(0,.5,0);
+			controls.update();
 			
 			//grid for measurements
 			/*
