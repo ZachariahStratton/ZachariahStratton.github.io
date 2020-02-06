@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.025</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.026</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -121,7 +121,7 @@
 			
 			var objLoader = new THREE.OBJLoader();
 			
-			objLoader.load("underarmour_sock.obj", function(mesh){
+			objLoader.load("sock.obj", function(mesh){
 				globalObject = mesh;
 				mesh.traverse( function ( child ) {
 					if ( child instanceof THREE.Mesh ) {
