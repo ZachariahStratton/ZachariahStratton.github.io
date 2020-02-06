@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.020</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.021</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -37,6 +37,7 @@
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
 		    camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
 		    camera.position.z = 1;
+		    camera.position.y = 1;
 		    scene = new THREE.Scene();
 			scene.background = new THREE.Color('white');
 			
@@ -62,6 +63,7 @@
 			scene.add(meshFloor);
 			*/
 			
+			/*
 			ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
 			scene.add(ambientLight);
 			
@@ -71,6 +73,7 @@
 			light.shadow.camera.near = 0.1;
 			light.shadow.camera.far = 25;
 			scene.add(light);
+			*/
 			
 			//Load default textures
 			var tLoader = new THREE.TextureLoader();
@@ -131,7 +134,7 @@
 				scene.add(mesh);
 			});
 			
-			camera.position.set(0, 1, -1);
+			//camera.position.set(0, 0, -.5);
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
 			
 			renderer = new THREE.WebGLRenderer();
@@ -146,9 +149,11 @@
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
 			
 			//grid for measurements
+			/*
 			var gridXZ = new THREE.GridHelper(100, 10);
 			gridXZ.setColors( new THREE.Color('black'), new THREE.Color('black') );
 			scene.add(gridXZ);
+			*/
 			
 			function applyTexture()
 			{
