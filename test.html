@@ -21,6 +21,8 @@
 		var globalObject;
 			
 		function init() {
+			var linebreak = document.createElement("br");
+		
 		
 			//Upload texture button
 			var inputFileToLoad = document.createElement("input");
@@ -32,6 +34,7 @@
 			buttonLoadFile.onclick = applyTexture;
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
+			document.body.appendChild(linebreak);
 
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
