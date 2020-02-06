@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.022</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.023</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -148,7 +148,7 @@
 			
 			//add controls to rotate
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
-			controls.target = new THREE.Vector3(0,.5,0);
+			controls.target = new THREE.Vector3(0,.2,0);
 			controls.update();
 			
 			//grid for measurements
