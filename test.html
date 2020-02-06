@@ -148,15 +148,13 @@
 			
 			//add controls to rotate
 			controls = new THREE.OrbitControls (camera, renderer.domElement);
-			controls.target = new THREE.Vector3(0,.2,0);
+			controls.target = new THREE.Vector3(0,.1,0);
 			controls.update();
 			
 			//grid for measurements
-			/*
 			var gridXZ = new THREE.GridHelper(100, 10);
 			gridXZ.setColors( new THREE.Color('black'), new THREE.Color('black') );
 			scene.add(gridXZ);
-			*/
 			
 			function applyTexture()
 			{
