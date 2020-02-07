@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.031</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.032</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -93,19 +93,19 @@
 			
 			//Create 3D model from obj file
 
-			// load a resource
-			/*
+			// load both obj and mtl file
 			var mtlLoader = new THREE.MTLLoader();
-			mtlLoader.load("block.mtl", function(materials){
+			mtlLoader.load("sock.mtl", function(materials){
 				
 				materials.preload();
 				var objLoader = new THREE.OBJLoader();
 				objLoader.setMaterials(materials);
 				
 				objLoader.load("sock.obj", function(mesh){
-				
 					mesh.traverse(function(node){
 						if( node instanceof THREE.Mesh ){
+							node.material.map = texture1;
+							node.material.needsUpdate = true;
 							node.castShadow = true;
 							node.receiveShadow = true;
 						}
@@ -117,8 +117,9 @@
 				});
 				
 			});
-			*/
 			
+			/*
+			//load only obj file
 			var objLoader = new THREE.OBJLoader();
 			
 			objLoader.load("sock.obj", function(mesh){
@@ -134,6 +135,7 @@
 				mesh.rotation.y = -Math.PI/4;
 				scene.add(mesh);
 			});
+			*/
 			
 			camera.position.set(0, 0, -.5);
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
