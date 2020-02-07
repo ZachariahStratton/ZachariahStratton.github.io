@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.042</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.043</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -60,7 +60,7 @@
 			
 			//Create 3D model
 			//load gltf file
-			var gLoader = new GLTFLoader();
+			var gLoader = new THREE.GLTFLoader();
 			
 			gLoader.load('sock.gltf', function ( gltf ) {
 				scene.add( gltf.scene );
