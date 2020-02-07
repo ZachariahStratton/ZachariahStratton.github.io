@@ -4,10 +4,11 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.039</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.040</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
+        <script src="./GLTFLoader.js"></script>
         <script src="./OrbitControls.js"></script>
         <script src="./Color.js"></script>
 		
@@ -57,7 +58,17 @@
 			var texture1 = tLoader.load('img.jpg');
 			var material1 = new THREE.MeshPhongMaterial({map: texture1});
 			
-			//Create 3D model from obj file
+			//Create 3D model
+			//load gltf file
+			var gLoader = new THREE.GLTFLoader();
+			
+			gLoader.load('sock.gltf', function ( gltf ) {
+				scene.add( gltf.scene );
+				}
+			);
+			
+			
+			/*
 			// load both obj and mtl file
 			var mtlLoader = new THREE.MTLLoader();
 			mtlLoader.load("sock.mtl", function(materials){
@@ -68,7 +79,6 @@
 				objLoader.setMaterials(materials);
 				
 				objLoader.load("sock.obj", function(mesh){
-					/*
 					mesh.traverse(function(node){
 						if( node.isMesh ){
 							node.material = material1;
@@ -77,13 +87,13 @@
 							node.receiveShadow = true;
 						}
 					});
-					*/
 				
 					mesh.position.set(0, 0, 0);
 					mesh.rotation.y = -Math.PI/4;
 					scene.add(mesh);
 				});
 			});
+			*/
 			
 			
 			/*
@@ -122,11 +132,9 @@
 			controls.update();
 			
 			//grid for measurements
-			/*
 			var gridXZ = new THREE.GridHelper(100, 10);
 			gridXZ.setColors( new THREE.Color('black'), new THREE.Color('black') );
 			scene.add(gridXZ);
-			*/
 			
 			/*
 			function applyTexture()
