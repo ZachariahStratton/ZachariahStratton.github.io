@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.038</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.039</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -63,10 +63,12 @@
 			mtlLoader.load("sock.mtl", function(materials){
 				
 				materials.preload();
+				
 				var objLoader = new THREE.OBJLoader();
 				objLoader.setMaterials(materials);
 				
 				objLoader.load("sock.obj", function(mesh){
+					/*
 					mesh.traverse(function(node){
 						if( node.isMesh ){
 							node.material = material1;
@@ -75,13 +77,15 @@
 							node.receiveShadow = true;
 						}
 					});
+					*/
 				
 					mesh.position.set(0, 0, 0);
 					mesh.rotation.y = -Math.PI/4;
 					scene.add(mesh);
+					objLoader.setMaterials(material1);
 				});
-				
 			});
+			
 			
 			/*
 			//load only obj file
