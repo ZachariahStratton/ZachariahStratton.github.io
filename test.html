@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.032</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.033</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -79,6 +79,7 @@
 			//Load default textures
 			var tLoader = new THREE.TextureLoader();
 			var texture1 = tLoader.load('img.jpg');
+			var material1 = new THREE.MeshPhongMaterial({map: texture1});
 			
 			//create basic block and add texture1 (img.jpg) to it
 			/*
@@ -104,16 +105,16 @@
 				objLoader.load("sock.obj", function(mesh){
 					mesh.traverse(function(node){
 						if( node instanceof THREE.Mesh ){
-							node.material.map = texture1;
+							node.material.map = material1;
 							node.material.needsUpdate = true;
-							node.castShadow = true;
-							node.receiveShadow = true;
+							//node.castShadow = true;
+							//node.receiveShadow = true;
 						}
 					});
 				
-					scene.add(mesh);
 					mesh.position.set(0, 0, 0);
 					mesh.rotation.y = -Math.PI/4;
+					scene.add(mesh);
 				});
 				
 			});
