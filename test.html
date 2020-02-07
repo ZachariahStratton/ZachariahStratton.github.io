@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.037</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.038</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -125,6 +125,7 @@
 			scene.add(gridXZ);
 			*/
 			
+			/*
 			function applyTexture()
 			{
 				var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -141,19 +142,19 @@
 							newTexture = loader2.load(fileLoadedEvent.target.result);
 							mesh.material.map = newTexture;
 							
-							/*
 							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
 									child.material = newTexture;
 									child.material.needsUpdate = true;
 								}
 							} );
-							*/
 						};
 						fileReader.readAsDataURL(fileToLoad);
 					}
 				}
 			}
+			
+			*/
 		}
 
 		function animate() {
