@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.033</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.034</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -22,8 +22,7 @@
 			
 		function init() {
 			var linebreak = document.createElement("br");
-		
-		
+			
 			//Upload texture button
 			var inputFileToLoad = document.createElement("input");
 			inputFileToLoad.type = "file";
@@ -35,36 +34,13 @@
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
 			document.body.appendChild(linebreak);
-			document.body.appendChild(linebreak);
-
+			
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
 		    camera = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
 		    camera.position.z = 1;
 		    scene = new THREE.Scene();
 			scene.background = new THREE.Color('white');
-			
-			/*
-			scene = new THREE.Scene();
-			camera = new THREE.PerspectiveCamera(90, 1280/720, 0.1, 1000);
-			
-			mesh = new THREE.Mesh(
-				new THREE.BoxGeometry(1,1,1),
-				new THREE.MeshPhongMaterial({color:0xff4444})
-			);
-			mesh.position.y += 1;
-			mesh.receiveShadow = true;
-			mesh.castShadow = true;
-			//scene.add(mesh);
-			
-			meshFloor = new THREE.Mesh(
-				new THREE.PlaneGeometry(20,20, 10,10),
-				new THREE.MeshPhongMaterial({color:0xffffff})
-			);
-			meshFloor.rotation.x -= Math.PI / 2;
-			meshFloor.receiveShadow = true;
-			scene.add(meshFloor);
-			*/
 			
 			ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
 			scene.add(ambientLight);
@@ -104,11 +80,11 @@
 				
 				objLoader.load("sock.obj", function(mesh){
 					mesh.traverse(function(node){
-						if( node instanceof THREE.Mesh ){
-							node.material.map = material1;
+						if( node.isMesh ){
+							node.material = material1;
 							node.material.needsUpdate = true;
-							//node.castShadow = true;
-							//node.receiveShadow = true;
+							node.castShadow = true;
+							node.receiveShadow = true;
 						}
 					});
 				
