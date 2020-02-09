@@ -12,7 +12,8 @@
         <script src="./OrbitControls.js"></script>
         <script src="./Color.js"></script>
 		
-		<!-- Source: https://jsfiddle.net/f2Lommf5/4991/ -->
+		
+		
 		<script type='text/javascript'>
 		let camera, scene, renderer, mesh;
 
@@ -35,6 +36,11 @@
 			buttonLoadFile.textContent = "Apply Texture";
 			document.body.appendChild(buttonLoadFile);
 			document.body.appendChild(linebreak);
+			
+			var buttonRed = document.createElement("button");
+			buttonRed.onclick = heelToeColor("red");
+			buttonRed.textContent = "Red";
+			document.body.appendChild(buttonRed);
 			
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -109,30 +115,23 @@
 							
 							globalObject.traverse ( ( o ) => {
 								if ( o.isMesh){
-									console.log(o.material);
-									console.log(o.material.name);
-									console.log("TRAVERSE COUNT");
 									o.material.map = newTexture;
-									if ( o.material.name == "heelToe" )
-										o.material.color.set("black");
 								}
 							} );
-							
-							/*
-							globalObject.traverse( function ( child ) {
-								if ( child instanceof THREE.Mesh ) {
-									console.log(child.material);
-									console.log("TRAVERSE COUNT");
-									child.material.map = newTexture;
-								}
-							} );
-							*/
 						};
 						fileReader.readAsDataURL(fileToLoad);
 					}
 				}
 			}
 			
+			function heelToeColor(string str){
+				globalObject.traverse ( ( o ) => {
+					if ( o.isMesh){
+						if ( o.material.name == "heelToe" )
+							o.material.color.set(str);
+					}
+				} );
+			}
 		}
 
 		function animate() {
