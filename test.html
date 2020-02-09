@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.043</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.044</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -43,15 +43,17 @@
 		    scene = new THREE.Scene();
 			scene.background = new THREE.Color('white');
 			
-			ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+			ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 			scene.add(ambientLight);
 			
+			/*
 			light = new THREE.PointLight(0xffffff, 0.8, 18);
 			light.position.set(-3,6,-3);
 			light.castShadow = true;
 			light.shadow.camera.near = 0.1;
 			light.shadow.camera.far = 25;
 			scene.add(light);
+			*/
 			
 			//Load default textures
 			var tLoader = new THREE.TextureLoader();
@@ -66,54 +68,6 @@
 				scene.add( gltf.scene );
 				}
 			);
-			
-			
-			/*
-			// load both obj and mtl file
-			var mtlLoader = new THREE.MTLLoader();
-			mtlLoader.load("sock.mtl", function(materials){
-				
-				materials.preload();
-				
-				var objLoader = new THREE.OBJLoader();
-				objLoader.setMaterials(materials);
-				
-				objLoader.load("sock.obj", function(mesh){
-					mesh.traverse(function(node){
-						if( node.isMesh ){
-							node.material = material1;
-							node.material.needsUpdate = true;
-							node.castShadow = true;
-							node.receiveShadow = true;
-						}
-					});
-				
-					mesh.position.set(0, 0, 0);
-					mesh.rotation.y = -Math.PI/4;
-					scene.add(mesh);
-				});
-			});
-			*/
-			
-			
-			/*
-			//load only obj file
-			var objLoader = new THREE.OBJLoader();
-			
-			objLoader.load("sock.obj", function(mesh){
-				globalObject = mesh;
-				mesh.traverse( function ( child ) {
-					if ( child instanceof THREE.Mesh ) {
-						child.material.map = texture1;
-						child.material.needsUpdate = true;
-					}
-				} );
-				
-				mesh.position.set(0, 0, 0);
-				mesh.rotation.y = -Math.PI/4;
-				scene.add(mesh);
-			});
-			*/
 			
 			camera.position.set(0, 0, -.5);
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
@@ -148,14 +102,13 @@
 						var fileReader = new FileReader();
 						fileReader.onload = function(fileLoadedEvent) 
 						{
-							var loader2 = new THREE.TextureLoader();
-							newTexture = loader2.load(fileLoadedEvent.target.result);
-							mesh.material.map = newTexture;
+							var tLoader2 = new THREE.TextureLoader();
+							newTexture =tLoader2.load(fileLoadedEvent.target.result);
+							newTexture.flipY = false;
 							
 							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material = newTexture;
-									child.material.needsUpdate = true;
+									child.material.map = newTexture;
 								}
 							} );
 						};
