@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.047</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.048</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -110,7 +110,9 @@
 							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
 									console.log(child.material);
+									console.log(child.material[1]);
 									child.material.map = newTexture;
+									child.material.getElementById("heelToe") = newTexture;
 								}
 							} );
 						};
