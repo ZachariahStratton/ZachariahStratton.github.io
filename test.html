@@ -109,7 +109,7 @@
 							
 							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material.map[1] = newTexture;
+									child.material[1].map = newTexture;
 								}
 							} );
 						};
