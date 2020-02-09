@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.045</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.046</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -109,22 +109,9 @@
 							
 							globalObject.traverse( function ( child ) {
 								if ( child instanceof THREE.Mesh ) {
-									child.material.map = newTexture;
+									child.material.map[1] = newTexture;
 								}
 							} );
-							
-							/*
-							var gLoader2 = new THREE.GLTFLoader();
-							gLoader2.load( 'sock.gltf', ( gltf ) => {
-								var model = gltf.scene;
-								model.traverse ( ( o ) => {
-									if ( o.isMesh ) {
-									o.material.map = texture;
-									}
-								} );
-								scene.add( model );
-							} );
-							*/
 						};
 						fileReader.readAsDataURL(fileToLoad);
 					}
