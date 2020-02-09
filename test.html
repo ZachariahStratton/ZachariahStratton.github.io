@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.044</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.045</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -66,6 +66,7 @@
 			
 			gLoader.load('sock.gltf', function ( gltf ) {
 				scene.add( gltf.scene );
+				globalObject = gltf.scene;
 				}
 			);
 			
@@ -103,7 +104,7 @@
 						fileReader.onload = function(fileLoadedEvent) 
 						{
 							var tLoader2 = new THREE.TextureLoader();
-							newTexture =tLoader2.load(fileLoadedEvent.target.result);
+							newTexture = tLoader2.load(fileLoadedEvent.target.result);
 							newTexture.flipY = false;
 							
 							globalObject.traverse( function ( child ) {
@@ -111,6 +112,19 @@
 									child.material.map = newTexture;
 								}
 							} );
+							
+							/*
+							var gLoader2 = new THREE.GLTFLoader();
+							gLoader2.load( 'sock.gltf', ( gltf ) => {
+								var model = gltf.scene;
+								model.traverse ( ( o ) => {
+									if ( o.isMesh ) {
+									o.material.map = texture;
+									}
+								} );
+								scene.add( model );
+							} );
+							*/
 						};
 						fileReader.readAsDataURL(fileToLoad);
 					}
