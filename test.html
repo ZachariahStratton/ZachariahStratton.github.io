@@ -41,6 +41,7 @@
 			buttonRed.onclick = heelToeColor("red");
 			buttonRed.textContent = "Red";
 			document.body.appendChild(buttonRed);
+			document.body.appendChild(linebreak);
 			
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -115,20 +116,18 @@
 					}
 				}
 			}
-			
-			
 		}
 		
 		function heelToeColor(str){
 			console.log("function heelToeColor called");
-		/*
+			/*
 			globalObject.traverse ( ( o ) => {
 				if ( o.isMesh){
 					if ( o.material.name == "heelToe" )
 						o.material.color.set(str);
 				}
 			} );
-		*/
+			*/
 		}
 		
 		function animate() {
