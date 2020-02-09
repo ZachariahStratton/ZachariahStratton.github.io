@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.051</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.052</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -110,9 +110,11 @@
 							globalObject.traverse ( ( o ) => {
 								if ( o.isMesh){
 									console.log(o.material);
+									console.log(o.material.name);
 									console.log("TRAVERSE COUNT");
 									o.material.map = newTexture;
-									o.material.color.set("black");
+									if ( o.material.name == "heelToe" )
+										o.material.color.set("black");
 								}
 							} );
 							
