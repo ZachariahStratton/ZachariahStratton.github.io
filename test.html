@@ -4,7 +4,7 @@
         </head>
         <body>
 		
-        <div id="navbar"><span>3D Sock Design Viewer v1.054</span></div>
+        <div id="navbar"><span>3D Sock Design Viewer v1.055</span></div>
         <script src="./three.min.js"></script>
         <script src="./OBJLoader.js"></script>
         <script src="./MTLLoader.js"></script>
@@ -116,19 +116,21 @@
 				}
 			}
 			
-			function heelToeColor(str){
-				console.log("function heelToeColor called");
-			/*
-				globalObject.traverse ( ( o ) => {
-					if ( o.isMesh){
-						if ( o.material.name == "heelToe" )
-							o.material.color.set(str);
-					}
-				} );
-			*/
-			}
+			
 		}
-
+		
+		function heelToeColor(str){
+			console.log("function heelToeColor called");
+		/*
+			globalObject.traverse ( ( o ) => {
+				if ( o.isMesh){
+					if ( o.material.name == "heelToe" )
+						o.material.color.set(str);
+				}
+			} );
+		*/
+		}
+		
 		function animate() {
 
 			controls.update();
