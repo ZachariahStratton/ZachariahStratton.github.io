@@ -4,7 +4,7 @@
 	<link href="styles/demo.css" rel="stylesheet">
 	</head>
 	<body>
-	<h1 align="center">3D Sock Design Viewer v1.061</h1>
+	<h1 align="center">3D Sock Design Viewer v1.062</h1>
 	<script src="./three.min.js"></script>
 	<script src="./OBJLoader.js"></script>
 	<script src="./MTLLoader.js"></script>
@@ -15,7 +15,10 @@
 	<div id="selectionHolder">
 		<input type="file" id="inputFileToLoad">
 		<button id="apply">Apply Texture</button>
-		<button id="red">Make red</button>
+		<select id="color">Choose Heel/Toe/Cuff Color
+			<option value="red">Red</option>
+			<option value="blue">Blue</option>
+		</select>
 	</div>
 	
 	<div id="canvasHolder">
@@ -36,8 +39,9 @@
 		var buttonLoadFile = document.getElementById("apply");
 		buttonLoadFile.onclick = applyTexture;
 		
-		var buttonRed = document.getElementById("red");
-		//buttonRed.onclick = heelToeColor("red");
+		var colorSelector = document.getElementById("colors");
+		var strColorChoice = colorSelector.options[colorSelector.selectedIndex].text;
+		
 		
 		//create scene for 3D model
 		//camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -110,6 +114,7 @@
 						var tLoader2 = new THREE.TextureLoader();
 						newTexture = tLoader2.load(fileLoadedEvent.target.result);
 						newTexture.flipY = false;
+						console.log(strColorChoice);
 						
 						globalObject.traverse ( ( o ) => {
 							if ( o.isMesh){
@@ -117,7 +122,7 @@
 							}
 							if ( o.isMesh){
 								if ( o.material.name == "heelToe" )
-									o.material.color.set("black");
+									o.material.color.set(strColorChoice);
 							}
 						} );
 					};
@@ -125,18 +130,6 @@
 				}
 			}
 		}
-		
-		/*
-		function heelToeColor(str){
-			console.log("function heelToeColor called");
-			globalObject.traverse ( ( o ) => {
-				if ( o.isMesh){
-					if ( o.material.name == "heelToe" )
-						o.material.color.set(str);
-				}
-			} );
-		}
-		*/
 	}
 	
 	
