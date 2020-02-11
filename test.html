@@ -4,7 +4,7 @@
 	<link href="styles/demo.css" rel="stylesheet">
 	</head>
 	<body>
-	<h1 align="center">3D Sock Design Viewer v1.063</h1>
+	<h1 align="center">3D Sock Design Viewer v1.064</h1>
 	<script src="./three.min.js"></script>
 	<script src="./OBJLoader.js"></script>
 	<script src="./MTLLoader.js"></script>
@@ -111,7 +111,7 @@
 						newTexture = tLoader2.load(fileLoadedEvent.target.result);
 						newTexture.flipY = false;
 						
-						var colorSelector = document.getElementById("colors");
+						var colorSelector = document.getElementById("color");
 						var strColorChoice = colorSelector.options[colorSelector.selectedIndex].text;
 						console.log(strColorChoice);
 						
