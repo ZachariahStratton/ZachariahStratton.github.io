@@ -15,6 +15,7 @@
 	<div id="selectionHolder">
 		<input type="file" id="inputFileToLoad">
 		<button id="apply">Apply Texture</button>
+		<button id="red">Make red</button>
 	</div>
 	
 	<div id="canvasHolder">
@@ -32,35 +33,11 @@
 	function init() {
 		var linebreak = document.createElement("br");
 		
-		//Upload texture button
-		/*
-		var inputFileToLoad = document.getElementById("inputFileToLoad");
-		document.body.appendChild(inputFileToLoad);
-		*/
-		
 		var buttonLoadFile = document.getElementById("apply");
 		buttonLoadFile.onclick = applyTexture;
 		
-		/*
-		var inputFileToLoad = document.createElement("input");
-		inputFileToLoad.type = "file";
-		inputFileToLoad.id = "inputFileToLoad";
-		document.body.appendChild(inputFileToLoad);
-
-		var buttonLoadFile = document.createElement("button");
-		buttonLoadFile.onclick = applyTexture;
-		buttonLoadFile.textContent = "Apply Texture";
-		document.body.appendChild(buttonLoadFile);
-		document.body.appendChild(linebreak);
-		*/
-		
-		/*
-		var buttonRed = document.createElement("button");
+		var buttonRed = document.getElementById("red");
 		buttonRed.onclick = heelToeColor("red");
-		buttonRed.textContent = "Red";
-		document.body.appendChild(buttonRed);
-		document.body.appendChild(linebreak);
-		*/
 		
 		//create scene for 3D model
 		//camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -144,19 +121,18 @@
 				}
 			}
 		}
+		
+		function heelToeColor(str){
+			console.log("function heelToeColor called");
+			globalObject.traverse ( ( o ) => {
+				if ( o.isMesh){
+					if ( o.material.name == "heelToe" )
+						o.material.color.set(str);
+				}
+			} );
+		}
 	}
 	
-	/*
-	function heelToeColor(str){
-		console.log("function heelToeColor called");
-		globalObject.traverse ( ( o ) => {
-			if ( o.isMesh){
-				if ( o.material.name == "heelToe" )
-					o.material.color.set(str);
-			}
-		} );
-	}
-	*/
 	
 	function animate() {
 		controls.update();
