@@ -1,6 +1,7 @@
 <html>
         <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link href="styles/demo.css" rel="stylesheet">
         </head>
         <body>
 		
@@ -37,11 +38,13 @@
 			document.body.appendChild(buttonLoadFile);
 			document.body.appendChild(linebreak);
 			
+			/*
 			var buttonRed = document.createElement("button");
 			buttonRed.onclick = heelToeColor("red");
 			buttonRed.textContent = "Red";
 			document.body.appendChild(buttonRed);
 			document.body.appendChild(linebreak);
+			*/
 			
 			//create scene for 3D model
 		    //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -72,7 +75,13 @@
 			camera.lookAt(new THREE.Vector3(0,1.8,0));
 			
 			renderer = new THREE.WebGLRenderer();
-			renderer.setSize(window.innerWidth * 0.7, window.innerHeight * 0.7);
+			var rendWidth = window.innerWidth * 0.8;
+			var rendHeight = window.innerHeight * 0.8;
+			if (rendWidth > rendHeight)
+				renderer.setSize(rendHeight, rendHeight);
+			else
+				renderer.setSize(rendWidth, rendWidth);
+				
 
 			renderer.shadowMap.enabled = true;
 			renderer.shadowMap.type = THREE.BasicShadowMap;
@@ -118,20 +127,19 @@
 			}
 		}
 		
+		/*
 		function heelToeColor(str){
 			console.log("function heelToeColor called");
-			/*
 			globalObject.traverse ( ( o ) => {
 				if ( o.isMesh){
 					if ( o.material.name == "heelToe" )
 						o.material.color.set(str);
 				}
 			} );
-			*/
 		}
+		*/
 		
 		function animate() {
-
 			controls.update();
 			requestAnimationFrame(animate);
 			renderer.render(scene, camera);
