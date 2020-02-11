@@ -1,7 +1,7 @@
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
+button {
+  background-color: white;
+  border: 2px solid #5859A7;
+  color: #5859A7;
   padding: 20px;
   text-align: center;
   text-decoration: none;
@@ -9,4 +9,33 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 30px;
+}
+
+input {
+  background-color: white;
+  border: 2px solid #5859A7;
+  color: #5859A7;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+#selectionHolder {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#canvasHolder {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
