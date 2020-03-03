@@ -2,6 +2,7 @@
 	<head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link href="styles/demo.css" rel="stylesheet">
+	<link href="./js/plugins/image-picker.css" rel="stylesheet">
 	</head>
 	<body>
 	<h1 align="center">3D Sock Design Viewer v1.066</h1>
@@ -11,21 +12,45 @@
 	<script src="./GLTFLoader.js"></script>
 	<script src="./OrbitControls.js"></script>
 	<script src="./Color.js"></script>
+	<script src="./js/plugins/jquery.min.js"></script>
+	<script src="./js/plugins/image-picker.min.js"></script>
+
+	<div>
+		<select class="image-picker show-html">
+		  <option data-img-src="images/galaxy.jpg" data-img-class="first" data-img-alt="Pattern1" value="1">  Page 1  </option>
+		  <option data-img-src="images/camo.jpg" data-img-alt="Pattern2" value="2">  Page 2  </option>
+		  <option data-img-src="images/tiedye.jpg" data-img-alt="Pattern3" value="3">  Page 3  </option>
+		  <option data-img-src="images/light_gray.jpg" data-img-alt="Pattern4" value="4">  Page 4  </option>
+		  <option data-img-src="images/white.jpg" data-img-alt="Pattern5" value="5">  Page 5  </option>
+		  <option data-img-src="images/dark-gray.jpg" data-img-alt="Pattern6" value="6">  Page 6  </option>
+		  <option data-img-src="images/red.jpg" data-img-alt="Pattern7" value="7">  Page 7  </option>
+		  <option data-img-src="images/yellow.jpg" data-img-alt="Pattern8" value="8">  Page 8  </option>
+		  <option data-img-src="images/green.jpg" data-img-alt="Pattern9" value="9">  Page 9  </option>
+		  <option data-img-src="images/blue.jpg" data-img-alt="Pattern10" value="10">  Page 10  </option>
+		  <option data-img-src="images/puple.jpg" data-img-alt="Pattern11" value="11">  Page 11  </option>
+		  <option data-img-src="images/pink.jpg" data-img-alt="Pattern12" data-img-class="last" value="12"> Page 12 </option>
+		</select>
+	</div>
+
+	<div>
+		<select class="image-picker masonry show-html">
+		  <option data-img-src="http://placekitten.com/280/300" value="1">Cute Kitten 1</option>
+		  <option data-img-src="http://placekitten.com/280/150" value="2">Cute Kitten 2</option>
+		  <option data-img-src="http://placekitten.com/280/270" value="3">Cute Kitten 3</option>
+		  <option data-img-src="http://placekitten.com/280/320" value="4">Cute Kitten 4</option>
+		  <option data-img-src="http://placekitten.com/280/200" value="5">Cute Kitten 5</option>
+		  <option data-img-src="http://placekitten.com/280/170" value="6">Cute Kitten 6</option>
+		</select>
+	</div>
 
 	<div id="selectionHolder">
 		<input type="file" id="inputFileToLoad">
-		<select id="color" name="Heel/Toe/Cuff Color">
-			<option value="red">Red</option>
-			<option value="blue">Blue</option>
-			<option value="red">Green</option>
-			<option value="blue">Yellow</option>
-			<option value="red">Black</option>
-			<option value="blue">White</option>
-		</select>
 		<button id="apply">Apply Texture</button>
 	</div>
 
 	<div id="canvasHolder"></div>
+
+
 
 	<script src="js/fs.js"></script>
 	</body>
