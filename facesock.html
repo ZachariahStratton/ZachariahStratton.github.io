@@ -1,0 +1,32 @@
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link href="styles/demo.css" rel="stylesheet">
+	</head>
+	<body>
+	<h1 align="center">3D Sock Design Viewer v1.066</h1>
+	<script src="./three.min.js"></script>
+	<script src="./OBJLoader.js"></script>
+	<script src="./MTLLoader.js"></script>
+	<script src="./GLTFLoader.js"></script>
+	<script src="./OrbitControls.js"></script>
+	<script src="./Color.js"></script>
+
+	<div id="selectionHolder">
+		<input type="file" id="inputFileToLoad">
+		<select id="color" name="Heel/Toe/Cuff Color">
+			<option value="red">Red</option>
+			<option value="blue">Blue</option>
+			<option value="red">Green</option>
+			<option value="blue">Yellow</option>
+			<option value="red">Black</option>
+			<option value="blue">White</option>
+		</select>
+		<button id="apply">Apply Texture</button>
+	</div>
+
+	<div id="canvasHolder"></div>
+
+	<script src="js/fs.js"></script>
+	</body>
+</html>
