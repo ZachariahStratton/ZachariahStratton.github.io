@@ -1,15 +1,20 @@
 let camera, scene, renderer, mesh;
 
 init();
+modelLoad();
 animate();
 
 var globalObject;
 
-function init() {
+function init(){
   var linebreak = document.createElement("br");
 
   var buttonLoadFile = document.getElementById("apply");
   buttonLoadFile.onclick = applyTexture;
+}
+
+function modelLoad() {
+  var linebreak = document.createElement("br");
 
   //create scene for 3D model
   //camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10);
@@ -65,44 +70,43 @@ function init() {
   gridXZ.setColors( new THREE.Color('black'), new THREE.Color('black') );
   scene.add(gridXZ);
   */
+}
 
-  function applyTexture()
+function applyTexture()
+{
+  console.log("function applyTexture called");
+  var filesSelected = document.getElementById("inputFileToLoad").files;
+  if (filesSelected.length > 0)
   {
-    console.log("function applyTexture called");
-    var filesSelected = document.getElementById("inputFileToLoad").files;
-    if (filesSelected.length > 0)
+    var fileToLoad = filesSelected[0];
+
+    if (fileToLoad.type.match("image.*"))
     {
-      var fileToLoad = filesSelected[0];
-
-      if (fileToLoad.type.match("image.*"))
+      var fileReader = new FileReader();
+      fileReader.onload = function(fileLoadedEvent)
       {
-        var fileReader = new FileReader();
-        fileReader.onload = function(fileLoadedEvent)
-        {
-          var tLoader2 = new THREE.TextureLoader();
-          newTexture = tLoader2.load(fileLoadedEvent.target.result);
-          newTexture.flipY = false;
+        var tLoader2 = new THREE.TextureLoader();
+        newTexture = tLoader2.load(fileLoadedEvent.target.result);
+        newTexture.flipY = false;
 
-          var colorSelector = document.getElementById("color");
-          var strColorChoice = colorSelector.options[colorSelector.selectedIndex].text;
-          console.log(strColorChoice);
+        var colorSelector = document.getElementById("color");
+        var strColorChoice = colorSelector.options[colorSelector.selectedIndex].text;
+        console.log(strColorChoice);
 
-          globalObject.traverse ( ( o ) => {
-            if ( o.isMesh){
-              o.material.map = newTexture;
-            }
-            if ( o.isMesh){
-              if ( o.material.name == "heelToe" )
-                o.material.color.set(strColorChoice.toLowerCase());
-            }
-          } );
-        };
-        fileReader.readAsDataURL(fileToLoad);
-      }
+        globalObject.traverse ( ( o ) => {
+          if ( o.isMesh){
+            o.material.map = newTexture;
+          }
+          if ( o.isMesh){
+            if ( o.material.name == "heelToe" )
+              o.material.color.set(strColorChoice.toLowerCase());
+          }
+        } );
+      };
+      fileReader.readAsDataURL(fileToLoad);
     }
   }
 }
-
 
 function animate() {
   controls.update();
